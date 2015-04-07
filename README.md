@@ -12,7 +12,7 @@ Install Git, then:
 Install Node.js, then:
 
     $ cd ~/sparql-gateway
-    $ npm install request express body-parser forever crypto mongoose config
+    $ npm install request express body-parser forever crypto mongoose config js-yaml
 
 Configure the setting file:
 
