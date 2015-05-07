@@ -47,8 +47,10 @@ If you use caching function, install MongoDB, then:
     > db.queryresults.ensureIndex({query: 1}, {unique: true, dropDups: true})
     > exit
     
-    $ vi ~/config/default.yaml
+    $ vi ~/sparql-gateway/config/default.yaml
     caching: true
+
+    $ sh restart-server.sh
 
 To remove all cache:
 
