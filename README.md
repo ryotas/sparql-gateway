@@ -54,7 +54,4 @@ If you use caching function, install MongoDB, then:
 
 To remove all cache:
 
-    $ mongo sparql
-    > db.queryresults.drop()
-    > db.queryresults.ensureIndex({query: 1}, {unique: true, dropDups: true})
-    > exit
+    $ sh remove-cache.sh
