@@ -12,7 +12,7 @@ Install Git, then:
 Install Node.js, then:
 
     $ cd ~/sparql-gateway
-    $ npm install request express body-parser forever crypto mongoose config js-yaml
+    $ npm install request express body-parser forever crypto mongoose config
 
 Configure the setting file:
 
@@ -55,3 +55,7 @@ If you use caching function, install MongoDB, then:
 To remove all cache:
 
     $ sh remove-cache.sh
+
+To update all cache when the database changed:
+
+    $ node replay.js

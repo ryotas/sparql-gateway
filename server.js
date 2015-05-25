@@ -17,7 +17,7 @@ if (config.endpoint) {
 }
 
 // UNSAFE STRING
-var strReject = ''
+var strReject;
 if (config.strReject) {
   console.log('String to be rejected is ' + config.strReject);
   strReject = config.strReject;
@@ -58,7 +58,8 @@ if (caching) {
 // MONGO DB SCHEMA DIFINITION FOR QUERY RESULT CACHING
 var Schema = mongoose.Schema;
 var QueryResultSchema = new Schema({
-  query:  String,
+  strQuery: String,
+  hashQuery: String,
   result: Object 
 });
 var QueryResult = mongoose.model('QueryResult', QueryResultSchema);
@@ -82,7 +83,7 @@ app.get('/sparql', function(req, res){
           // WHEN CACHE DOES NOT EXIST
           } else {
             postQuery(res, strQuery, function(result) {
-              createCache(hashQuery, result);
+              createCache(strQuery, hashQuery, result);
             });
           }
         });
@@ -93,7 +94,6 @@ app.get('/sparql', function(req, res){
 
 function isValidRequest(req) {
   if (req.query.query) {
-    //console.log('SPARQL request recieved.');
     return true;
   } else {
     console.log('This is NOT valid SPARQL request.');
@@ -102,7 +102,6 @@ function isValidRequest(req) {
 }
 
 function isSafeQuery(strQuery) {
-  //console.log('Query: ' + strQuery);
   if (strQuery.match(regexpReject)) { 
     console.log('SPARQL request rejected.');
     return false;
@@ -115,12 +114,11 @@ function getHashQuery(strQuery) {
   var objHash = crypto.createHash('sha512');
   objHash.update(strQuery);
   hashQuery = objHash.digest('hex');
-  //console.log('Hash: ' + hashQuery);
   return hashQuery;
 }
 
 function getCache(hashQuery, callback) {
-  QueryResult.find({query:hashQuery}, function(err, cache) {
+  QueryResult.find({"hashQuery":hashQuery}, function(err, cache) {
     if (cache.length == 0) {
       console.log('This query is NOT cached.');
     } else {
@@ -158,9 +156,10 @@ function postQuery(res, strQuery, callback) {
   });
 }
 
-function createCache(hashQuery, strResult) {
+function createCache(strQuery, hashQuery, strResult) {
   var qr = new QueryResult();
-  qr.query  = hashQuery;
+  qr.strQuery = strQuery;
+  qr.hashQuery = hashQuery;
   qr.result = strResult;
   qr.save(function(err) {
     if (err) { console.log(err); }
