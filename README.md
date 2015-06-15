@@ -17,17 +17,21 @@ Install Node.js, then:
 Configure the setting file:
 
     $ cd ~/sparql-gateway/config
-    $ cp default.yaml.sample default.yaml
-    $ vi default.yaml
-    endpoint: http://endpoint:8890/sparql
-    strReject: create|drop|insert|delete
-    port: 9001
-    caching: false
+    $ cp default.json.sample default.json
+    $ vi default.json
+    {
+      "endpoint"  : "http://localhost:8890/sparql"
+    , "strReject" : "create|drop|insert|delete"
+    , "port"      : 9001
+    , "caching"   : true
+    }
 
 Start the server:
 
     $ cd ~/sparql-gateway
     $ node server.js
+
+Check firewall if port 9001 is accessible.
 
 Now this gateway can GET queries at http://gateway:9001/sparql
 
