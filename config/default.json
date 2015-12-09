@@ -1,5 +1,5 @@
 {
-  "endpoint"  : "http://localhost:8890/sparql"
+  "endpoint"  : "http://54.238.218.145:8890/sparql"
 , "strReject" : "create|drop|insert|delete"
 , "port"      : 9001
 , "caching"   : true
