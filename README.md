@@ -1,6 +1,10 @@
 # sparql-gateway
 
-This SPARQL gateway server can filter queries and cache query results.
+This is a SPARQL gateway server for filtering queries and caching query results.
+
+### License
+
+CC0 1.0 Universal
 
 ### Setup
 
