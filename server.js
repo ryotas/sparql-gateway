@@ -138,7 +138,7 @@ function postQuery(res, strQuery, callback) {
   var options = {
     uri: endpoint,
     json: true,
-    form: {query: strQuery, format: "json"},
+    form: {query: strQuery}, // DEFAULT SHOULD BE format: "json" SO THIS IS UNNECESSARY (SOMETIMES THIS CAUSES PROBLEMS)
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
       'Accept': 'application/sparql-results+json',
