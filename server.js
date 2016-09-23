@@ -13,7 +13,7 @@ if (config.endpoint) {
   console.log('Endpoint is ' + config.endpoint);
   endpoint = config.endpoint;
 } else {
-  console.log('Please set endpoint URL in ./config/default.yaml!');
+  console.log('Please set endpoint URL in ./config/default.json!');
 }
 
 // UNSAFE STRING
@@ -22,7 +22,7 @@ if (config.strReject) {
   console.log('String to be rejected is ' + config.strReject);
   strReject = config.strReject;
 } else {
-  console.log('Please set string to be rejected in ./config/default.yaml!');
+  console.log('Please set string to be rejected in ./config/default.json!');
 }
 var regexpReject = new RegExp(strReject, "i"); // i FOR CAPITAL UNSENSITIVE
 
@@ -32,7 +32,7 @@ if (config.port) {
   console.log('Listening port is ' + config.port);
   port = config.port;
 } else {
-  console.log('Please set listening port in ./config/default.yaml!');
+  console.log('Please set listening port in ./config/default.json!');
 }
 
 // CACHING
